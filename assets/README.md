@@ -1282,7 +1282,7 @@ export async function createJobAction(
 - install
 
 ```sh
-npx shadcn-ui@latest add toast
+npx shadcn@latest add toast
 
 ```
 

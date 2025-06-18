@@ -7,15 +7,15 @@ export default function Home() {
   return (
     <main>
       <header className="max-w-2xl max-auto px-4 sm:px-2 py-2">
-        <Image src={Logo} alt="logo" />
+        <Link href="/">
+          <Image src={Logo} alt="logo" />
+        </Link>
       </header>
       <section className="min-h-screen flex items-center justify-center px-4 ">
         <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text content */}
           <div className="text-left">
-            <h1 className="text-5xl font-bold  mb-4">
-              Job Tracking App
-            </h1>
+            <h1 className="text-5xl font-bold  mb-4">Job Tracking App</h1>
             <p className=" mb-6 leading-loose max-w-md">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
               sit, minima, eos esse omnis iste rem nobis perspiciatis soluta

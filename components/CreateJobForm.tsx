@@ -29,7 +29,6 @@ function CreateJobForm() {
   function onSubmit(values: CreateAndEditJobType) {
     console.log(values);
   }
-  
   return (
     <Form {...form}>
       <form
