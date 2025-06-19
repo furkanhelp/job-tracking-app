@@ -2384,13 +2384,16 @@ export default EditJobForm;
 - create seed.js
 - run "node prisma/seed"
 
+
+
+
 ```js
 const { PrismaClient } = require('@prisma/client');
 const data = require('./mock-data.json');
 const prisma = new PrismaClient();
 
 async function main() {
-  const clerkId = 'user_2ZUfUOtKM8W9eF8hSQbISv7aQmn';
+  const clerkId = 'user_2yV6QZBlk4H68iNdKaoc0U67WNy';
   const jobs = data.map((job) => {
     return {
       ...job,
