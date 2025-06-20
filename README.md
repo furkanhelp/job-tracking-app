@@ -1,4 +1,5 @@
-💼 Job Tracking App
+💼 
+Job Tracking App
 A full-stack, modern Job Tracking Application designed to help users manage their job search efficiently. Built using the latest web technologies like Next.js, Prisma, Clerk Authentication, Recharts, and Tailwind CSS, this app focuses on clean UI, seamless UX, and robust functionality.
 
 📸 Preview
