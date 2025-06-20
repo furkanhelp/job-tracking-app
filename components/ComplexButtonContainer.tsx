@@ -53,22 +53,20 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
     );
     // dots
 
-    if (currentPage > 3) {
-      pageButtons.push(
-        <Button size="icon" variant="outline" key="dots-1">
-          ...
+   if (currentPage > 3 ) {
+    pageButtons.push(
+        <Button size='icon' variant='outline' key='dots-1'>
+            ...
         </Button>
-      );
-    }
-    // one before current page
-    if (currentPage !== 1 && currentPage !== 2) {
-      pageButtons.push(
-        addPageButton({
-          page: currentPage - 1,
-          activeClass: false,
-        })
-      );
-    }
+    )
+   }
+
+   if (currentPage !== 1 && currentPage !== 2) {
+    pageButtons.push(
+        addPageButton({ page: currentPage - 1, activeClass: false})
+    )
+   }
+
     // current page
     if (currentPage !== 1 && currentPage !== totalPages) {
       pageButtons.push(
@@ -82,15 +80,13 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
 
     if (currentPage !== totalPages && currentPage !== totalPages - 1) {
       pageButtons.push(
-        addPageButton({
-          page: currentPage + 1,
-          activeClass: false,
-        })
+        addPageButton({ page: currentPage + 1, activeClass: false })
       );
     }
+
     if (currentPage < totalPages - 2) {
       pageButtons.push(
-        <Button size="icon" variant="outline" key="dots-1">
+        <Button size="icon" variant="outline" key="dots-2">
           ...
         </Button>
       );
