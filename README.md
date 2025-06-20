@@ -1,38 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+💼 Job Tracking App
+A full-stack, modern Job Tracking Application designed to help users manage their job search efficiently. Built using the latest web technologies like Next.js, Prisma, Clerk Authentication, Recharts, and Tailwind CSS, this app focuses on clean UI, seamless UX, and robust functionality.
 
-I USE MACAROO!!
+📸 Preview
+Insert screenshot or demo GIF link here (optional but recommended)
 
-## Getting Started
+🚀 Live Demo
+Coming Soon / [Optional if hosted online]
 
-First, run the development server:
+✨ Features
+🧑‍💼 User Authentication with Clerk
 
-```bash
+📄 Add/Edit/Delete Jobs (position, company, status, etc.)
+
+📊 Beautiful Charts powered by Recharts
+
+📅 Track Job Status (Interview, Declined, Pending, etc.)
+
+🔎 Search & Filter by job status, type, and more
+
+📈 Stats Dashboard with visual insights
+
+🧪 Mock Data Integration with Mockaroo for realistic development data
+
+🌙 Dark Mode 
+
+🛠️ Tech Stack
+Tech	Description
+Next.js	React-based full-stack framework
+TypeScript	Typed JavaScript for more reliable code
+Prisma	ORM for interacting with PostgreSQL
+Clerk	Modern authentication for Next.js
+Recharts	Lightweight chart library for data visualization
+Tailwind CSS	Utility-first CSS framework
+PostgreSQL	Relational database used with Prisma
+Vercel (optional)	Deployment platform for frontend
+
+🧰 How to Run Locally
+
+bash
+
+git clone https://github.com/furkanhelp/job-tracking-app.git
+cd job-tracking-app
+npm install
+
+--Set up your environment variables--
+env
+
+DATABASE_URL=your_postgresql_database_url
+CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_FRONTEND_API=your_clerk_frontend_api
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+
+--Then run the development server--
+bash
+
+npx prisma generate
+npx prisma db push
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧪 Sample Data
+During development, I used Mockaroo to generate realistic sample job data, which helped in stress-testing and UI optimization for real-world use cases.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📊 Recharts Integration
+The dashboard utilizes Recharts to display:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Number of applications per status
 
-## Learn More
+Trends over time
 
-To learn more about Next.js, take a look at the following resources:
+Category-wise job breakdowns
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This allows users to quickly gain insight into their job hunt progress.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔐 Authentication with Clerk
+The app uses Clerk to handle:
 
-## Deploy on Vercel
+Secure user sessions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Login/Sign up flows
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Protecting private routes
+
+🎯 Why I Built This
+As a passionate developer, I wanted to solve a real problem many job seekers face: managing job applications. This app was built from scratch with modern tooling and clean code structure. It reflects both my frontend and backend capabilities, along with my attention to UI/UX.
+
+📌 Future Improvements
+Email reminders for interviews or follow-ups
+
+Job board integrations (LinkedIn, Indeed API)
+
+Advanced analytics and exportable reports
+
+Admin panel (for testing or company HR tools)
+
+
+📬 Contact
+If you like this project or want to collaborate:
+
+[GitHub] (https://github.com/furkanhelp)
+
+[LinkedIn](https://www.linkedin.com/in/furkanyardm/)
+
+Email: frknyrdm0@gmail.com
