@@ -54,53 +54,52 @@ export async function getAllJobsAction({
   page: number;
   totalPages: number;
 }> {
-  const userId = authenticateAndRedirect()
+  const userId = await authenticateAndRedirect();
   try {
     let whereClause: Prisma.JobWhereInput = {
       clerkId: userId,
     };
-   if (search) {
-    whereClause = {
-      ...whereClause,
-      OR: [
-        {
-          position: {
-            contains: search,
+    if (search) {
+      whereClause = {
+        ...whereClause,
+        OR: [
+          {
+            position: {
+              contains: search,
+            },
           },
-        },
-        {
-          company: {
-            contains: search,
+          {
+            company: {
+              contains: search,
+            },
           },
-        },
-      ]
-    };
-   }
-   
-   if (jobStatus && jobStatus !== 'all') {
-    whereClause = {
-      ...whereClause,
-      status: jobStatus,
-    };
-   }
+        ],
+      };
+    }
 
-   const skip = (page - 1) * limit;
+    if (jobStatus && jobStatus !== "all") {
+      whereClause = {
+        ...whereClause,
+        status: jobStatus,
+      };
+    }
 
+    const skip = (page - 1) * limit;
 
-   const jobs: JobType[] = await prisma.job.findMany({
-    where: whereClause,
-    take: limit,
-    skip,
-    orderBy: {
-      createdAt: 'desc',
-    },
-   });
+    const jobs: JobType[] = await prisma.job.findMany({
+      where: whereClause,
+      take: limit,
+      skip,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-   const count: number = await prisma.job.count({
-    where: whereClause,
-   });
-   const totalPages = Math.ceil(count / limit);
-   return { jobs, count, page, totalPages };
+    const count: number = await prisma.job.count({
+      where: whereClause,
+    });
+    const totalPages = Math.ceil(count / limit);
+    return { jobs, count, page, totalPages };
   } catch (error) {}
   return { jobs: [], count: 0, page: 1, totalPages: 0 };
 
@@ -108,7 +107,7 @@ export async function getAllJobsAction({
 
 // DeleteJob
 export async function deleteJobAction(id: string): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     const job: JobType = await prisma.job.delete({
@@ -126,7 +125,7 @@ export async function deleteJobAction(id: string): Promise<JobType | null> {
 // Get the job info
 export async function getSingleJobAction(id: string): Promise<JobType | null> {
   let job: JobType | null = null;
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     job = await prisma.job.findUnique({
@@ -149,7 +148,7 @@ export async function updateJobAction(
   id: string,
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     const job: JobType = await prisma.job.update({
@@ -176,7 +175,7 @@ export async function getStatsAction(): Promise<{
 
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
   
   try {
     const stats = await prisma.job.groupBy({
@@ -211,7 +210,7 @@ export async function getStatsAction(): Promise<{
 export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
   const sixMonthsAgo = dayjs().subtract(6, "month").toDate();
   try {
     const jobs = await prisma.job.findMany({
