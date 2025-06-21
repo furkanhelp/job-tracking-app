@@ -7,11 +7,11 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-type PageProps = {
+interface PageProps {
   params: {
     id: string;
   };
-};
+}
 
 const JobDetailPage = async ({ params }: PageProps) => {
   const queryClient = new QueryClient();
@@ -27,4 +27,5 @@ const JobDetailPage = async ({ params }: PageProps) => {
     </HydrationBoundary>
   );
 };
+
 export default JobDetailPage;
