@@ -7,13 +7,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-const JobDetailPage = async ({ params }: PageProps) => {
+const JobDetailPage = async ({ params }: { params: { id: string } }) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
