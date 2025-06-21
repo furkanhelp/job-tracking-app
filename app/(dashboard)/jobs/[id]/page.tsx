@@ -1,13 +1,17 @@
 import EditJobForm from "@/components/EditJobForm";
 import { getSingleJobAction } from "@/utils/actions";
-
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 
-const JobDetailPage = async ({ params }: { params: { id: string } }) => {
+
+type Props = {
+  params: { id: string };
+};
+
+const JobDetailPage = async ({ params }: Props) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
