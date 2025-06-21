@@ -6,8 +6,15 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { JSX } from "react/jsx-runtime";
 
-async function JobDetailPage({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const JobDetailPage = async ({ params }: PageProps): Promise<JSX.Element> => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
@@ -20,5 +27,5 @@ async function JobDetailPage({ params }: { params: { id: string } }) {
       <EditJobForm jobId={params.id} />
     </HydrationBoundary>
   );
-}
+};
 export default JobDetailPage;
