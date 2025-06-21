@@ -15,7 +15,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import JobInfo from "./JobInfo";
 import DeleteJobButton from "../components/DeleteJobBtn";
-import { text } from "stream/consumers";
+
 
 
 function JobCard({ job }: { job: JobType }) {

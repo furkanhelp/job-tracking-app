@@ -17,7 +17,6 @@ import { CustomFormField, CustomFormSelect } from "./FormComponents";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createJobAction } from "@/utils/actions";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 function CreateJobForm() {

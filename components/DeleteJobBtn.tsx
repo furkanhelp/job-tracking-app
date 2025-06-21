@@ -1,9 +1,6 @@
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import JobInfo from "./JobInfo";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteJobAction } from "@/utils/actions";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 
 function DeleteJobBtn({ id }: { id: string }) {

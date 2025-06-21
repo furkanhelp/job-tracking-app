@@ -16,11 +16,9 @@ import { Form } from "@/components/ui/form";
 import { CustomFormField, CustomFormSelect } from "./FormComponents";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import {
-  createJobAction,
   getSingleJobAction,
   updateJobAction,
 } from "@/utils/actions";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 function EditJobForm({ jobId }: { jobId: string }) {

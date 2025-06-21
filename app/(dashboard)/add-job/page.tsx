@@ -1,6 +1,4 @@
 import CreateJobForm from "@/components/CreateJobForm";
-import Navbar from "@/components/Navbar";
-import { ThemeProvider } from "@/components/theme-provider";
 import {
   dehydrate,
   HydrationBoundary,
