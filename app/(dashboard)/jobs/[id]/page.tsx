@@ -6,7 +6,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { JSX } from "react/jsx-runtime";
 
 type PageProps = {
   params: {
@@ -14,7 +13,7 @@ type PageProps = {
   };
 };
 
-const JobDetailPage = async ({ params }: PageProps): Promise<JSX.Element> => {
+const JobDetailPage = async ({ params }: PageProps) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
