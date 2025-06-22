@@ -1,3 +1,17 @@
+<h1 align="center">Job Tracking App</h1>
+
+<div align="center">
+  <h3>
+    <a href="https://jobtrackingappp.netlify.app/" color="white">
+      Live Demo
+    </a> 
+  </h3>
+</div>
+
+<br>
+<br>
+<br>
+
 <p>Light</p>
 
 ![Screenshot 2025-06-22 174207](https://github.com/user-attachments/assets/9cd5ab1e-1b5e-44f3-9158-9c991b0b1dc2)
@@ -11,17 +25,14 @@
 ![Screenshot 2025-06-22 174426](https://github.com/user-attachments/assets/d8776304-a45b-42b0-9510-09136e1cdc32)
 ![Screenshot 2025-06-22 174356](https://github.com/user-attachments/assets/fdd7aa1a-dc21-4fd4-9c67-b4d276f6d737)
 
-💼 
-Job Tracking App
+ 
+## 💼 Job Tracking App 
 A full-stack, modern Job Tracking Application designed to help users manage their job search efficiently. Built using the latest web technologies like Next.js, Prisma, Clerk Authentication, Recharts, and Tailwind CSS, this app focuses on clean UI, seamless UX, and robust functionality.
 
-📸 Preview
+## 📸 Preview
 
 
-🚀 Live Demo
-Coming Soon /
-
-✨ Features
+## ✨ Features
 🧑‍💼 User Authentication with Clerk
 
 📄 Add/Edit/Delete Jobs (position, company, status, etc.)
@@ -38,7 +49,7 @@ Coming Soon /
 
 🌙 Dark Mode 
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 Tech	Description
 Next.js	React-based full-stack framework
 TypeScript	Typed JavaScript for more reliable code
@@ -49,7 +60,7 @@ Tailwind CSS	Utility-first CSS framework
 PostgreSQL	Relational database used with Prisma
 Vercel (optional)	Deployment platform for frontend
 
-🧰 How to Run Locally
+## 🧰 How to Run Locally
 
 bash
 
@@ -73,10 +84,10 @@ npx prisma generate
 npx prisma db push
 npm run dev
 
-🧪 Sample Data
+## 🧪 Sample Data
 During development, I used Mockaroo to generate realistic sample job data, which helped in stress-testing and UI optimization for real-world use cases.
 
-📊 Recharts Integration
+## 📊 Recharts Integration
 The dashboard utilizes Recharts to display:
 
 Number of applications per status
@@ -87,7 +98,7 @@ Category-wise job breakdowns
 
 This allows users to quickly gain insight into their job hunt progress.
 
-🔐 Authentication with Clerk
+## 🔐 Authentication with Clerk
 The app uses Clerk to handle:
 
 Secure user sessions
@@ -96,10 +107,10 @@ Login/Sign up flows
 
 Protecting private routes
 
-🎯 Why I Built This
+## 🎯 Why I Built This
 As a passionate developer, I wanted to solve a real problem many job seekers face: managing job applications. This app was built from scratch with modern tooling and clean code structure. It reflects both my frontend and backend capabilities, along with my attention to UI/UX.
 
-📌 Future Improvements
+## 📌 Future Improvements
 Email reminders for interviews or follow-ups
 
 Job board integrations (LinkedIn, Indeed API)
@@ -109,10 +120,10 @@ Advanced analytics and exportable reports
 Admin panel (for testing or company HR tools)
 
 
-📬 Contact
+## 📬 Contact
 If you like this project or want to collaborate:
 
-[GitHub] (https://github.com/furkanhelp)
+[GitHub](https://github.com/furkanhelp)
 
 [LinkedIn](https://www.linkedin.com/in/furkanyardm/)
 
