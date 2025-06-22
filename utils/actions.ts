@@ -7,30 +7,24 @@ import { redirect } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import dayjs from "dayjs";
 
-// function authenticateAndRedirect(): string {
-//   const { userId } = auth();
+async function authenticateAndRedirect(): Promise<string> {
+  const authData = await auth();
+  console.log("AUTH DATA:", authData); // 👈 Add this
+  const { userId } = authData;
 
-//   if (!userId) {
-//     redirect("/");
-//   }
-//   return userId;
-// }
-
-async function authenticateAndRedirect(): Promise<string | null> {
-  try {
-    const { userId } = await auth();
-    return userId;
-  } catch (error) {
-    console.error("Authentication error:", error);
-    return null;
+  if (!userId) {
+    console.warn("NO USER, REDIRECTING TO /");
+    redirect("/");
   }
+
+  return userId;
 }
 
 export async function createJobAction(
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const userId = authenticateAndRedirect();
+   await new Promise((resolve) => setTimeout(resolve, 3000));
+  const userId = await authenticateAndRedirect();
   try {
     createAndEditJobSchema.parse(values);
     const job: JobType = await prisma.job.create({
@@ -65,8 +59,8 @@ export async function getAllJobsAction({
   page: number;
   totalPages: number;
 }> {
-  const userId = authenticateAndRedirect();
-  // await new Promise((resolve) => setTimeout(resolve, 5000));
+  const userId = await authenticateAndRedirect();
+   await new Promise((resolve) => setTimeout(resolve, 5000));
 
   try {
     let whereClause: Prisma.JobWhereInput = {
@@ -117,7 +111,7 @@ export async function getAllJobsAction({
 }
 
 export async function deleteJobAction(id: string): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     const job: JobType = await prisma.job.delete({
@@ -134,7 +128,7 @@ export async function deleteJobAction(id: string): Promise<JobType | null> {
 
 export async function getSingleJobAction(id: string): Promise<JobType | null> {
   let job: JobType | null = null;
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     job = await prisma.job.findUnique({
@@ -156,7 +150,7 @@ export async function updateJobAction(
   id: string,
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
 
   try {
     const job: JobType = await prisma.job.update({
@@ -178,9 +172,9 @@ export async function getStatsAction(): Promise<{
   interview: number;
   declined: number;
 }> {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
   // just to show Skeleton
-  // await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   try {
     const stats = await prisma.job.groupBy({
       by: ["status"],
@@ -211,7 +205,7 @@ export async function getStatsAction(): Promise<{
 export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
-  const userId = authenticateAndRedirect();
+  const userId = await authenticateAndRedirect();
   const sixMonthsAgo = dayjs().subtract(6, "month").toDate();
   try {
     const jobs = await prisma.job.findMany({
