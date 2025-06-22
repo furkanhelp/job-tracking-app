@@ -4,13 +4,10 @@
 ![Screenshot 2025-06-22 174103](https://github.com/user-attachments/assets/5f2de57a-cf06-44ad-919d-37a1c2ec2aa0)
 
 <p>Dark</p> 
-
 ![Screenshot 2025-06-22 174751](https://github.com/user-attachments/assets/ea2e62e9-bfdf-4afe-b9aa-d92bc03ea646)
 ![Screenshot 2025-06-22 174728](https://github.com/user-attachments/assets/f066ad50-6815-42c8-a7d8-0dca242e29a3)
 ![Screenshot 2025-06-22 174426](https://github.com/user-attachments/assets/d8776304-a45b-42b0-9510-09136e1cdc32)
 ![Screenshot 2025-06-22 174356](https://github.com/user-attachments/assets/fdd7aa1a-dc21-4fd4-9c67-b4d276f6d737)
-
-
 
 💼 
 Job Tracking App
