@@ -7,16 +7,10 @@ import { redirect } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import dayjs from "dayjs";
 
-async function authenticateAndRedirect(): Promise<string> {
-  const authData = await auth();
-  console.log("AUTH DATA:", authData); // 👈 Add this
-  const { userId } = authData;
 
-  if (!userId) {
-    console.warn("NO USER, REDIRECTING TO /");
-    redirect("/");
-  }
-
+export async function authenticateAndRedirect(): Promise<string> {
+  const { userId } = await auth();
+  if (!userId) redirect("/");
   return userId;
 }
 
