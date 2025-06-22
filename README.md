@@ -57,7 +57,7 @@ Clerk	Modern authentication for Next.js
 Recharts	Lightweight chart library for data visualization
 Tailwind CSS	Utility-first CSS framework
 PostgreSQL	Relational database used with Prisma
-Vercel (optional)	Deployment platform for frontend
+Netlify	Deployment platform for frontend
 
 ## 🧰 How to Run Locally
 
