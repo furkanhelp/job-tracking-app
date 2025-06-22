@@ -6,37 +6,43 @@ import { JobType, CreateAndEditJobType, createAndEditJobSchema } from "./types";
 import { redirect } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import dayjs from "dayjs";
-import { log } from "console";
 
-async function authenticateAndRedirect(): Promise<string> {
+// function authenticateAndRedirect(): string {
+//   const { userId } = auth();
+
+//   if (!userId) {
+//     redirect("/");
+//   }
+//   return userId;
+// }
+
+async function authenticateAndRedirect(): Promise<string | null> {
   try {
     const { userId } = await auth();
-    if (!userId) {
-      redirect("/");
-    }
     return userId;
   } catch (error) {
     console.error("Authentication error:", error);
-    redirect("/");
+    return null;
   }
 }
 
 export async function createJobAction(
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
+  const userId = authenticateAndRedirect();
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    const userId = await authenticateAndRedirect();
     createAndEditJobSchema.parse(values);
-
-    return await prisma.job.create({
+    const job: JobType = await prisma.job.create({
       data: {
         ...values,
+
         clerkId: userId,
       },
     });
+    return job;
   } catch (error) {
-    console.error("Create job error:", error);
+    console.error(error);
     return null;
   }
 }
@@ -53,184 +59,189 @@ export async function getAllJobsAction({
   jobStatus,
   page = 1,
   limit = 10,
-}: GetAllJobsActionTypes) {
+}: GetAllJobsActionTypes): Promise<{
+  jobs: JobType[];
+  count: number;
+  page: number;
+  totalPages: number;
+}> {
+  const userId = authenticateAndRedirect();
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+
   try {
-    const userId = await authenticateAndRedirect();
-
-    let whereClause: Prisma.JobWhereInput = { clerkId: userId };
-
+    let whereClause: Prisma.JobWhereInput = {
+      clerkId: userId,
+    };
     if (search) {
       whereClause = {
         ...whereClause,
         OR: [
-          { position: { contains: search } },
-          { company: { contains: search } },
+          {
+            position: {
+              contains: search,
+            },
+          },
+          {
+            company: {
+              contains: search,
+            },
+          },
         ],
       };
     }
-
     if (jobStatus && jobStatus !== "all") {
-      whereClause = { ...whereClause, status: jobStatus };
+      whereClause = {
+        ...whereClause,
+        status: jobStatus,
+      };
     }
+    const skip = (page - 1) * limit;
 
-    const [jobs, count] = await Promise.all([
-      prisma.job.findMany({
-        where: whereClause,
-        take: limit,
-        skip: (page - 1) * limit,
-        orderBy: { createdAt: "desc" },
-      }),
-      prisma.job.count({ where: whereClause }),
-    ]);
-
-    return {
-      jobs,
-      count,
-      page,
-      totalPages: Math.ceil(count / limit),
-    };
+    const jobs: JobType[] = await prisma.job.findMany({
+      where: whereClause,
+      skip,
+      take: limit,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    const count: number = await prisma.job.count({
+      where: whereClause,
+    });
+    const totalPages = Math.ceil(count / limit);
+    return { jobs, count, page, totalPages };
   } catch (error) {
-    console.error("Get jobs error:", error);
+    console.error(error);
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
 }
 
-// DeleteJob
 export async function deleteJobAction(id: string): Promise<JobType | null> {
-  try {
-    const userId = await authenticateAndRedirect();
+  const userId = authenticateAndRedirect();
 
-    return await prisma.job.delete({
+  try {
+    const job: JobType = await prisma.job.delete({
       where: {
         id,
         clerkId: userId,
       },
     });
+    return job;
   } catch (error) {
-    console.error("Delete job error:", error);
     return null;
   }
 }
 
-// Get the job info
 export async function getSingleJobAction(id: string): Promise<JobType | null> {
-  try {
-    const userId = await authenticateAndRedirect();
+  let job: JobType | null = null;
+  const userId = authenticateAndRedirect();
 
-    const job = await prisma.job.findUnique({
+  try {
+    job = await prisma.job.findUnique({
       where: {
         id,
         clerkId: userId,
       },
     });
-
-    if (!job) {
-      redirect("/jobs");
-    }
-
-    return job;
   } catch (error) {
-    console.error("Get single job error:", error);
+    job = null;
+  }
+  if (!job) {
     redirect("/jobs");
   }
+  return job;
 }
 
-// Update Job
 export async function updateJobAction(
   id: string,
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  try {
-    const userId = await authenticateAndRedirect();
-    createAndEditJobSchema.parse(values);
+  const userId = authenticateAndRedirect();
 
-    return await prisma.job.update({
+  try {
+    const job: JobType = await prisma.job.update({
       where: {
         id,
         clerkId: userId,
       },
-      data: values,
+      data: {
+        ...values,
+      },
     });
+    return job;
   } catch (error) {
-    console.error("Update job error:", error);
     return null;
   }
 }
-
-// Stats Section
 export async function getStatsAction(): Promise<{
   pending: number;
   interview: number;
   declined: number;
 }> {
+  const userId = authenticateAndRedirect();
+  // just to show Skeleton
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
   try {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    const userId = await authenticateAndRedirect();
-
     const stats = await prisma.job.groupBy({
       by: ["status"],
-      _count: { status: true },
-      where: { clerkId: userId },
+      _count: {
+        status: true,
+      },
+      where: {
+        clerkId: userId, // replace userId with the actual clerkId
+      },
     });
+    const statsObject = stats.reduce((acc, curr) => {
+      acc[curr.status] = curr._count.status;
+      return acc;
+    }, {} as Record<string, number>);
 
-    // Initialize default stats
     const defaultStats = {
       pending: 0,
-      interview: 0,
       declined: 0,
+      interview: 0,
+      ...statsObject,
     };
-
-    // Type guard to check if status is valid
-    const isValidStatus = (
-      status: string
-    ): status is keyof typeof defaultStats => {
-      return status in defaultStats;
-    };
-
-    // Update stats from database
-    stats.forEach((item) => {
-      if (isValidStatus(item.status)) {
-        defaultStats[item.status] = item._count.status;
-      }
-    });
-
     return defaultStats;
   } catch (error) {
-    console.error("Get stats error:", error);
-    return { pending: 0, interview: 0, declined: 0 };
+    redirect("/jobs");
   }
 }
-
 
 export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
+  const userId = authenticateAndRedirect();
+  const sixMonthsAgo = dayjs().subtract(6, "month").toDate();
   try {
-    const userId = await authenticateAndRedirect();
-    const sixMonthsAgo = dayjs().subtract(6, "month").toDate();
-
     const jobs = await prisma.job.findMany({
       where: {
         clerkId: userId,
-        createdAt: { gte: sixMonthsAgo },
+        createdAt: {
+          gte: sixMonthsAgo,
+        },
       },
-      orderBy: { createdAt: "asc" },
+      orderBy: {
+        createdAt: "asc",
+      },
     });
 
-    return jobs.reduce((acc, job) => {
+    let applicationsPerMonth = jobs.reduce((acc, job) => {
       const date = dayjs(job.createdAt).format("MMM YY");
+
       const existingEntry = acc.find((entry) => entry.date === date);
 
       if (existingEntry) {
-        existingEntry.count++;
+        existingEntry.count += 1;
       } else {
         acc.push({ date, count: 1 });
       }
 
       return acc;
     }, [] as Array<{ date: string; count: number }>);
+
+    return applicationsPerMonth;
   } catch (error) {
-    console.error("Get charts data error:", error);
-    return [];
+    redirect("/jobs");
   }
 }
