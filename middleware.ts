@@ -12,6 +12,9 @@ export default clerkMiddleware(async (auth, req) => {
   }
 });
 
+clerkMiddleware({
+  authorizedParties: ["https://jobtrackingappp.netlify.app/"],
+});
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],

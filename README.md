@@ -104,3 +104,7 @@ If you like this project or want to collaborate:
 [LinkedIn](https://www.linkedin.com/in/furkanyardm/)
 
 Email: frknyrdm0@gmail.com
+
+Clerk: Clock skew detected. This usually means that your system clock is inaccurate. Clerk will attempt to account for the clock skew in development.
+
+To resolve this issue, make sure your system's clock is set to the correct time (e.g. turn off and on automatic time synchronization).
