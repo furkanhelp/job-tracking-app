@@ -1,9 +1,11 @@
 <p>Light</p>
+
 ![Screenshot 2025-06-22 174207](https://github.com/user-attachments/assets/9cd5ab1e-1b5e-44f3-9158-9c991b0b1dc2)
 ![Screenshot 2025-06-22 174144](https://github.com/user-attachments/assets/29f45500-26ba-46a9-8e9d-d8fb2a2606da)
 ![Screenshot 2025-06-22 174103](https://github.com/user-attachments/assets/5f2de57a-cf06-44ad-919d-37a1c2ec2aa0)
 
 <p>Dark</p> 
+
 ![Screenshot 2025-06-22 174751](https://github.com/user-attachments/assets/ea2e62e9-bfdf-4afe-b9aa-d92bc03ea646)
 ![Screenshot 2025-06-22 174728](https://github.com/user-attachments/assets/f066ad50-6815-42c8-a7d8-0dca242e29a3)
 ![Screenshot 2025-06-22 174426](https://github.com/user-attachments/assets/d8776304-a45b-42b0-9510-09136e1cdc32)
