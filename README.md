@@ -12,6 +12,7 @@
 <br>
 <br>
 
+## 📸 Preview
 <p>Light</p>
 
 ![Screenshot 2025-06-22 174207](https://github.com/user-attachments/assets/9cd5ab1e-1b5e-44f3-9158-9c991b0b1dc2)
@@ -28,8 +29,6 @@
  
 ## 💼 Job Tracking App 
 A full-stack, modern Job Tracking Application designed to help users manage their job search efficiently. Built using the latest web technologies like Next.js, Prisma, Clerk Authentication, Recharts, and Tailwind CSS, this app focuses on clean UI, seamless UX, and robust functionality.
-
-## 📸 Preview
 
 
 ## ✨ Features
