@@ -1,3 +1,13 @@
+$ image-grid ![Screenshot 2025-06-22 174103](https://github.com/user-attachments/assets/0e33f9ac-d211-4723-8eb6-8fdd63238e72)![Screenshot 2025-06-22 174144](https://github.com/user-attachments/assets/2f054f8c-4a80-48ba-8997-02e7f1da0352) ./images --n 4 --rows 1 --width 1000 --fill
+saved image-grid.jpg, (166, 998, 3), 27.1KiB
+
+
+
+
+
+
+
+
 💼 
 Job Tracking App
 A full-stack, modern Job Tracking Application designed to help users manage their job search efficiently. Built using the latest web technologies like Next.js, Prisma, Clerk Authentication, Recharts, and Tailwind CSS, this app focuses on clean UI, seamless UX, and robust functionality.
